@@ -1,10 +1,8 @@
-// Menu burger (petit ecran)
 function toggleMenu() {
     let mainNav = document.getElementById("main-nav");
     mainNav.classList.toggle("open");
 }
 
-// Bouton mode sombre / clair
 function changeTheme() {
     let themeBtn = document.getElementById("theme-toggle");
 
@@ -17,7 +15,6 @@ function changeTheme() {
     }
 }
 
-// 1) Remplir le nom et le prix du produit (envoyes par le bouton Think Twice)
 let params = new URLSearchParams(window.location.search);
 let productName = params.get("name");
 let productPrice = params.get("price");
@@ -29,7 +26,6 @@ if (productPrice) {
     document.getElementById("price").value = productPrice;
 }
 
-// 2) Bouton Verdict
 function showVerdict() {
     let product = document.getElementById("product").value;
     let price = document.getElementById("price").value;
@@ -41,7 +37,6 @@ function showVerdict() {
     let error = document.getElementById("error");
     let result = document.getElementById("result");
 
-    // Si une reponse manque, on affiche le message d'erreur
     if (product === "" || price === "" || budget === "" || frequency === "" || reason === "" || own === "") {
         error.classList.remove("hidden");
         result.classList.add("hidden");
@@ -50,7 +45,6 @@ function showVerdict() {
 
     error.classList.add("hidden");
 
-    // Score du besoin : frequence + raison + "je n'ai pas deja un produit"
     let needScore = Number(frequency) + Number(reason) + Number(own);
     let budgetOk = Number(budget) >= Number(price);
 
@@ -81,9 +75,6 @@ function showVerdict() {
     result.scrollIntoView({ behavior: "smooth" });
 }
 
-// 3) Les choix
-
-// Buy : on garde le produit puis on va vers Contact (livraison)
 function buyNow() {
     let product = {
         name: document.getElementById("product").value,
@@ -93,7 +84,6 @@ function buyNow() {
     window.location.href = "contact.html";
 }
 
-// Basket : on ajoute le produit dans le panier puis on va vers Basket
 function addToBasket() {
     let basket = JSON.parse(localStorage.getItem("basket")) || [];
 
@@ -106,7 +96,6 @@ function addToBasket() {
     window.location.href = "basket.html";
 }
 
-// Ignore : on retourne a la page Home
 function wontbuy() {
     window.location.href = "home.html";
 }
