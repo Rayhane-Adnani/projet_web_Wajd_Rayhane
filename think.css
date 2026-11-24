@@ -90,11 +90,13 @@ a {
     display: none;
 }
 
+
 main {
     max-width: 1100px;
     margin: auto;
     padding: 24px;
 }
+
 
 .hero {
     display: grid;
