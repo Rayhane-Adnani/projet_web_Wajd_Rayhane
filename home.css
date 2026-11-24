@@ -8,6 +8,7 @@
     --header: #000000;
 }
 
+
 body.dark {
     --bg: #000000;
     --card: #0a1a3a;
@@ -226,6 +227,11 @@ img:hover {
     .main-nav.open {
         display: block;
     }
+
+    .main-nav ul {
+        grid-auto-flow: row;
+    }
+}
 
     .main-nav ul {
         grid-auto-flow: row;
