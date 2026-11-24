@@ -3,6 +3,7 @@ function toggleMenu() {
     mainNav.classList.toggle("open");
 }
 
+
 function changeTheme() {
     let themeBtn = document.getElementById("theme-toggle");
 
@@ -10,10 +11,19 @@ function changeTheme() {
 
     if (document.body.classList.contains("dark")) {
         themeBtn.value = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");   
     } else {
         themeBtn.value = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
     }
 }
+
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    document.getElementById("theme-toggle").value = "☀️ Light Mode";
+}
+
 
 let params = new URLSearchParams(window.location.search);
 let productName = params.get("name");
@@ -47,33 +57,48 @@ function showVerdict() {
 
     let needScore = Number(frequency) + Number(reason) + Number(own);
     let budgetOk = Number(budget) >= Number(price);
+    let suitable = needScore >= 3; 
+   
+    let littleOver = Number(price) <= Number(budget) * 1.5;
 
     let title = document.getElementById("result-title");
     let text = document.getElementById("result-text");
+    let buyBtn = document.getElementById("buy-btn");
+    let instBtn = document.getElementById("inst-btn");
+    let altBtn = document.getElementById("alt-btn");
 
-    result.classList.remove("buy", "wait", "no");
+    result.classList.remove("buy", "wait", "think");
+    buyBtn.classList.add("hidden");
+    instBtn.classList.add("hidden");
+    altBtn.classList.add("hidden");
 
-    if (needScore <= 2) {
-        title.textContent = "❌ You don't need it";
-        text.textContent = product + " looks like an impulse. Keep your DT!";
-        result.classList.add("no");
-    } else if (needScore >= 4 && budgetOk) {
-        title.textContent = "✅ Buy it now";
-        text.textContent = "You really need " + product + " and your budget allows it.";
+    if (suitable && budgetOk) {
+        
+        title.textContent = "✅ BUY NOW";
+        text.textContent = product + " matches your needs and your budget. You can go straight to checkout.";
         result.classList.add("buy");
-    } else {
-        title.textContent = "⏳ Wait";
-        if (budgetOk) {
-            text.textContent = product + " is a good idea, but it is not the right moment yet.";
-        } else {
-            text.textContent = product + " is a good idea, but it is above your budget. Wait and save more.";
-        }
+        buyBtn.classList.remove("hidden");
+    } else if (suitable && littleOver) {
+        
+        let part = Math.ceil(Number(price) / 3);
+        title.textContent = "💳 PAY IN INSTALLMENTS";
+        text.textContent = product + " is suitable, but your budget is tight. " +
+            "Pay in 3 installments of " + part + " DT and get it now.";
         result.classList.add("wait");
+        instBtn.classList.remove("hidden");
+    } else {
+        
+        title.textContent = "💡 BETTER OPTION";
+        text.textContent = "Your budget is not enough for " + product + ". " +
+            "We have a more suitable option in our store for you.";
+        result.classList.add("think");
+        altBtn.classList.remove("hidden");
     }
 
     result.classList.remove("hidden");
     result.scrollIntoView({ behavior: "smooth" });
 }
+
 
 function buyNow() {
     let product = {
@@ -81,21 +106,24 @@ function buyNow() {
         price: document.getElementById("price").value
     };
     localStorage.setItem("order", JSON.stringify(product));
-    window.location.href = "contact.html";
+    window.location.href = "buy.html";
 }
 
-function addToBasket() {
-    let basket = JSON.parse(localStorage.getItem("basket")) || [];
-
-    basket.push({
+function payInstallments() {
+    let price = Number(document.getElementById("price").value);
+    let product = {
         name: document.getElementById("product").value,
-        price: document.getElementById("price").value
-    });
-
-    localStorage.setItem("basket", JSON.stringify(basket));
-    window.location.href = "basket.html";
+        price: price,
+        installments: 3,
+        part: Math.ceil(price / 3)
+    };
+    localStorage.setItem("order", JSON.stringify(product));
+    window.location.href = "installments.html";
 }
 
+function seeAlternatives() {
+    window.location.href = "home.html";
+}
 function wontbuy() {
     window.location.href = "home.html";
 }
