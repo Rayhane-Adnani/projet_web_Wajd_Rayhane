@@ -10,9 +10,16 @@ function changeTheme() {
 
     if (document.body.classList.contains("dark")) {
         themeBtn.value = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark"); 
     } else {
         themeBtn.value = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
     }
+}
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    document.getElementById("theme-toggle").value = "☀️ Light Mode";
 }
 
 let params = new URLSearchParams(window.location.search);
@@ -53,8 +60,40 @@ let thinkButtons = document.querySelectorAll(".think-btn");
 for (let i = 0; i < thinkButtons.length; i++) {
     let card = thinkButtons[i].closest(".product-card");
     let name = card.querySelector("h3").textContent;
-    let priceText = card.querySelector(".price").textContent;   // exemple : "3 200 DT"
-    let price = priceText.replace("DT", "").split(" ").join(""); // exemple : "3200"
+    let priceText = card.querySelector(".price").textContent;   
+    let price = priceText.replace("DT", "").split(" ").join("");
+
+    thinkButtons[i].href = "form.html?name=" + encodeURIComponent(name) + "&price=" + price;
+}
+
+function addToBasket(name, price) {
+    let basket = JSON.parse(localStorage.getItem("basket")) || [];
+    basket.push({ name: name, price: price });
+    localStorage.setItem("basket", JSON.stringify(basket));
+}
+
+let basketCards = document.querySelectorAll(".product-card");
+
+for (let i = 0; i < basketCards.length; i++) {
+    let name = basketCards[i].querySelector("h3").textContent.trim();
+    let priceText = basketCards[i].querySelector(".price").textContent;
+    let price = Number(priceText.replace(/[^0-9]/g, ""));  
+
+    let btn = document.createElement("input");
+    btn.type = "button";
+    btn.className = "basket-btn";
+    btn.value = "🧺 Add to basket";
+
+    btn.onclick = function () {
+        addToBasket(name, price);
+        btn.value = "✅ Added!";
+        setTimeout(function () {
+            btn.value = "🧺 Add to basket";
+        }, 1500);
+    };
+
+    basketCards[i].querySelector(".think-btn").insertAdjacentElement("afterend", btn);
+}
 
     thinkButtons[i].href = "form.html?name=" + encodeURIComponent(name) + "&price=" + price;
 }
