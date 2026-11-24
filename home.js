@@ -6,7 +6,6 @@ for (let i = 0; i < links.length; i++) {
         links[i].classList.add("active");
     }
 }
-
 let hour = new Date().getHours();
 let message;
 
@@ -28,6 +27,7 @@ function toggleMenu() {
     mainNav.classList.toggle("open");
 }
 
+// Bouton mode sombre / clair
 function changeTheme() {
     let themeBtn = document.getElementById("theme-toggle");
 
@@ -35,7 +35,14 @@ function changeTheme() {
 
     if (document.body.classList.contains("dark")) {
         themeBtn.value = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");   
     } else {
         themeBtn.value = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
     }
+}
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    document.getElementById("theme-toggle").value = "☀️ Light Mode";
 }
