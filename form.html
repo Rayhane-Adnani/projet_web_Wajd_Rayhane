@@ -14,7 +14,7 @@
 
         <nav id="main-nav" class="main-nav">
             <ul>
-                <li><a href="think.html" class="active">Think Twice</a></li>
+                <li><a href="think.html" class="active">About us</a></li>
                 <li><a href="home.html">Home</a></li>
                 <li><a href="basket.html">Basket</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -86,9 +86,9 @@
 
             <h3>Your choice</h3>
             <div class="choices">
-                <input type="button" class="choice-btn" value="🛒 Buy" onclick="buyNow()">
-                <input type="button" class="choice-btn" value="🧺 Add to basket" onclick="addToBasket()">
-                <input type="button" class="choice-btn" value="🚫 I won't buy it " onclick="wontbuy()">
+                <input type="button" id="buy-btn" class="choice-btn hidden" value="🛒 Buy" onclick="buyNow()">
+                <input type="button" id="inst-btn" class="choice-btn hidden" value="💳 Pay in 3 installments" onclick="payInstallments()">
+                <input type="button" id="alt-btn" class="choice-btn hidden" value="🛍️ Choose a better option" onclick="seeAlternatives()">
             </div>
         </section>
     </main>
@@ -96,6 +96,10 @@
     <footer class="site-footer">
         <p>&copy; 2026 Before You Buy, Think Twice</p>
     </footer>
+
+    <script src="form.js"></script>
+</body>
+</html>
 
     <script src="form.js"></script>
 </body>
