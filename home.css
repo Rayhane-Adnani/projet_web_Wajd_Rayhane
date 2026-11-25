@@ -49,8 +49,8 @@ h1 {
 }
 
 .site-header {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
     padding: 14px 24px;
@@ -64,15 +64,14 @@ h1 {
 }
 
 .main-nav {
-    justify-self: end;
+    margin-left: auto;
 }
 
 .main-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
     gap: 15px;
 }
 
@@ -108,9 +107,13 @@ h1 {
     list-style: none;
     margin: 20px 0 30px;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
+}
+
+.dropdown li {
+    flex: 1 1 200px;
 }
 
 .dropdown a {
@@ -134,17 +137,18 @@ table, tbody {
 }
 
 tr {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: auto auto;
-    grid-auto-columns: 200px;
-    justify-content: center;
-    column-gap: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    gap: 0 20px;
+    height: 276px;
     margin-bottom: 30px;
 }
 
 td {
-    grid-row: 1;
+    width: 200px;
+    height: 76px;
+    flex-shrink: 0;
     padding: 12px 10px;
     background-color: var(--card);
     color: var(--text);
@@ -159,7 +163,7 @@ td {
 }
 
 td:has(img) {
-    grid-row: 2;
+    height: 200px;
     display: block;
     padding: 0;
     border-top: none;
@@ -169,6 +173,7 @@ td:has(img) {
 }
 
 td:has(img) + td:has(img) {
+    margin-top: auto;
     border-top: 1px solid var(--bordure);
     border-radius: 14px;
 }
@@ -176,7 +181,7 @@ td:has(img) + td:has(img) {
 img {
     display: block;
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.3s;
 }
@@ -187,18 +192,27 @@ img:hover {
 
 @media (max-width: 900px) {
     tr {
-        display: flex;
-        flex-direction: column;
+        flex-flow: column nowrap;
         align-items: center;
+        height: auto;
         margin-bottom: 0;
     }
 
     td {
-        width: 200px;
+        height: auto;
     }
 
     td:has(img) {
+        height: auto;
         margin-bottom: 25px;
+    }
+
+    td:has(img) + td:has(img) {
+        margin-top: 0;
+    }
+
+    img {
+        height: 200px;
     }
 }
 
@@ -209,8 +223,8 @@ img:hover {
 }
 
 @media (max-width: 768px) {
-    .site-header {
-        grid-template-columns: 1fr auto auto;
+    .logo {
+        flex: 1;
     }
 
     .burger-btn {
@@ -219,8 +233,8 @@ img:hover {
 
     .main-nav {
         display: none;
-        grid-column: 1 / -1;
-        justify-self: stretch;
+        flex-basis: 100%;
+        margin-left: 0;
         order: 5;
     }
 
@@ -229,11 +243,6 @@ img:hover {
     }
 
     .main-nav ul {
-        grid-auto-flow: row;
-    }
-}
-
-    .main-nav ul {
-        grid-auto-flow: row;
+        flex-direction: column;
     }
 }
