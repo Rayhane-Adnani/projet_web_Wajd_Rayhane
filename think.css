@@ -120,20 +120,6 @@ main {
     color: var(--gris);
 }
 
-.start-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 24px;
-    background-color: var(--accent);
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
-}
-
-.start-btn:hover {
-    opacity: 0.9;
-}
-
 .hero-image img {
     display: block;
     width: 100%;
