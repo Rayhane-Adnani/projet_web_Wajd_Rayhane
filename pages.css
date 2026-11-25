@@ -35,8 +35,8 @@ a {
 }
 
 .site-header {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
     padding: 14px 24px;
@@ -50,15 +50,14 @@ a {
 }
 
 .main-nav {
-    justify-self: end;
+    margin-left: auto;
 }
 
 .main-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
     gap: 15px;
 }
 
@@ -114,6 +113,7 @@ main h1 {
 .hidden {
     display: none;
 }
+
 
 .form-card,
 .result {
@@ -193,12 +193,13 @@ main h1 {
 }
 
 .choices {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
 }
 
 .choice-btn {
+    flex: 1 1 150px;
     padding: 12px;
     background-color: var(--accent);
     color: white;
@@ -223,8 +224,8 @@ main h1 {
 }
 
 @media (max-width: 768px) {
-    .site-header {
-        grid-template-columns: 1fr auto auto;
+    .logo {
+        flex: 1;
     }
 
     .burger-btn {
@@ -233,8 +234,8 @@ main h1 {
 
     .main-nav {
         display: none;
-        grid-column: 1 / -1;
-        justify-self: stretch;
+        flex-basis: 100%;
+        margin-left: 0;
         order: 5;
     }
 
@@ -243,7 +244,7 @@ main h1 {
     }
 
     .main-nav ul {
-        grid-auto-flow: row;
+        flex-direction: column;
     }
 
     main h1 {
@@ -258,7 +259,7 @@ main h1 {
     background-color: var(--bg); color: var(--text);
     border: 1px solid var(--bordure); border-radius: 8px;
 }
-.item { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--bordure); }
+.item { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--bordure); }
 .plan { width: 100%; border-collapse: collapse; margin-top: 10px; }
 .plan th, .plan td { padding: 8px; text-align: left; border-bottom: 1px solid var(--bordure); }
 .total { font-weight: bold; font-size: 1.1rem; }
