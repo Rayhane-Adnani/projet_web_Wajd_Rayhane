@@ -168,7 +168,6 @@ main h1 {
     opacity: 0.9;
 }
 
-/* ===== Resultat ===== */
 .result {
     margin-top: 24px;
     text-align: center;
@@ -195,7 +194,6 @@ main h1 {
     border-left-color: #dc2626;
 }
 
-/* ===== Your choice ===== */
 .choices {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
