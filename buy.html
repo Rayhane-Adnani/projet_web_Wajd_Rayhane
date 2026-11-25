@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now - Think Twice</title>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">🧠 Before You Buy</div>
+        <input type="button" id="burger-btn" class="burger-btn" value="☰" onclick="toggleMenu()">
+        <nav id="main-nav" class="main-nav">
+            <ul>
+                <li><a href="think.html">About us</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="basket.html">Basket</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <input type="button" id="theme-toggle" class="theme-btn" value="🌙 Dark Mode" onclick="changeTheme()">
+    </header>
+
+    <main>
+        <h1>Buy <span class="highlight">now</span></h1>
+        <p class="subtitle">Check your order and enter your delivery details.</p>
+        <section id="empty-msg" class="form-card hidden">
+            <p>No product selected yet.</p>
+            <a href="home.html" class="link-btn">Choose a product</a>
+        </section>
+        <div id="checkout">
+        <section class="form-card">
+            <h3>Your order</h3>
+            <div class="item"><span id="o-name"></span><strong><span id="o-price"></span> DT</strong></div>
+            <p class="total">Total: <span id="o-total"></span> DT (full payment)</p>
+        </section>
+        <section class="form-card">
+            <h3>Delivery details</h3>
+            <div class="field">
+                <label for="d-name">Full name</label>
+                <input type="text" id="d-name" placeholder="Your name">
+            </div>
+            <div class="field">
+                <label for="d-phone">Phone number</label>
+                <input type="tel" id="d-phone" placeholder="Example: 20 123 456">
+            </div>
+            <div class="field">
+                <label for="d-address">Address</label>
+                <input type="text" id="d-address" placeholder="Street and number">
+            </div>
+            <div class="field">
+                <label for="d-city">City</label>
+                <input type="text" id="d-city" placeholder="Example: Tunis">
+            </div>
+            <p id="error" class="error hidden">Please fill in all the fields.</p>
+            <input type="button" class="verdict-btn" value="Confirm my order" onclick="confirmOrder()">
+        </section>
+        </div>
+        <section id="success" class="result buy hidden">
+            <h2>✅ Order confirmed</h2>
+            <p>Thank you! We will contact you soon to deliver your product.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Before You Buy, Think Twice</p>
+    </footer>
+
+    <script src="pages.js"></script>
+</body>
+</html>

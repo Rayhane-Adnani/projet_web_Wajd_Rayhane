@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Think Twice</title>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">🧠 Before You Buy</div>
+        <input type="button" id="burger-btn" class="burger-btn" value="☰" onclick="toggleMenu()">
+        <nav id="main-nav" class="main-nav">
+            <ul>
+                <li><a href="think.html">About us</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="basket.html">Basket</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <input type="button" id="theme-toggle" class="theme-btn" value="🌙 Dark Mode" onclick="changeTheme()">
+    </header>
+
+    <main>
+        <h1>Contact <span class="highlight">us</span></h1>
+        <p class="subtitle">A question? Send us a message.</p>
+        <section id="contact-form" class="form-card">
+            <div class="field">
+                <label for="c-name">Your name</label>
+                <input type="text" id="c-name" placeholder="Your name">
+            </div>
+            <div class="field">
+                <label for="c-email">Your email</label>
+                <input type="email" id="c-email" placeholder="name@example.com">
+            </div>
+            <div class="field">
+                <label for="c-message">Message</label>
+                <textarea id="c-message" rows="5" placeholder="Write your message..."></textarea>
+            </div>
+            <p id="error" class="error hidden">Please fill in all the fields.</p>
+            <input type="button" class="verdict-btn" value="Send" onclick="sendMessage()">
+        </section>
+        <section id="success" class="result buy hidden">
+            <h2>✅ Message sent</h2>
+            <p>Thank you! We will answer you soon.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Before You Buy, Think Twice</p>
+    </footer>
+
+    <script src="pages.js"></script>
+</body>
+</html>

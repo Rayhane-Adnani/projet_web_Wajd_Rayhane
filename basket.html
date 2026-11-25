@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket - Think Twice</title>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">🧠 Before You Buy</div>
+        <input type="button" id="burger-btn" class="burger-btn" value="☰" onclick="toggleMenu()">
+        <nav id="main-nav" class="main-nav">
+            <ul>
+                <li><a href="think.html">About us</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="basket.html" class="active">Basket</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <input type="button" id="theme-toggle" class="theme-btn" value="🌙 Dark Mode" onclick="changeTheme()">
+    </header>
+
+    <main>
+        <h1>Your <span class="highlight">Basket</span></h1>
+        <p class="subtitle">The products you added.</p>
+        <section id="basket-empty" class="form-card hidden">
+            <p>Your basket is empty.</p>
+            <a href="home.html" class="link-btn">Choose a product</a>
+        </section>
+        <section id="basket-full" class="form-card hidden">
+            <div id="basket-list"></div>
+            <p class="total">Total: <span id="b-total"></span> DT</p>
+            <div class="choices">
+                <input type="button" class="choice-btn" value="🛒 Buy now" onclick="checkoutBasket(false)">
+                <input type="button" class="choice-btn" value="💳 Pay in 3 installments" onclick="checkoutBasket(true)">
+                <input type="button" class="choice-btn" value="🗑️ Empty basket" onclick="emptyBasket()">
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Before You Buy, Think Twice</p>
+    </footer>
+
+    <script src="pages.js"></script>
+</body>
+</html>
