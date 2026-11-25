@@ -1,9 +1,7 @@
-// Menu burger (petit ecran)
 function toggleMenu() {
     document.getElementById("main-nav").classList.toggle("open");
 }
 
-// Bouton mode sombre / clair (on retient le choix)
 function changeTheme() {
     let themeBtn = document.getElementById("theme-toggle");
     document.body.classList.toggle("dark");
@@ -21,12 +19,10 @@ if (localStorage.getItem("theme") === "dark") {
     document.getElementById("theme-toggle").value = "☀️ Light Mode";
 }
 
-// La commande est sauvegardee par la page Think Twice (form.js)
 function getOrder() {
     return JSON.parse(localStorage.getItem("order"));
 }
 
-// ===== Pages Buy now et Installments =====
 function showOrder() {
     let order = getOrder();
 
@@ -40,7 +36,6 @@ function showOrder() {
     document.getElementById("o-price").textContent = order.price;
     document.getElementById("o-total").textContent = order.price;
 
-    // Seulement sur la page Installments : les 3 paiements
     if (document.getElementById("p1")) {
         let price = Number(order.price);
         let part = Math.ceil(price / 3);
@@ -70,7 +65,6 @@ function confirmOrder() {
     document.getElementById("success").classList.remove("hidden");
 }
 
-// ===== Page Basket =====
 function getBasket() {
     return JSON.parse(localStorage.getItem("basket")) || [];
 }
@@ -120,7 +114,6 @@ function showBasket() {
     document.getElementById("b-total").textContent = total;
 }
 
-// On enleve un seul produit
 function removeItem(index) {
     let basket = getBasket();
     basket.splice(index, 1);
@@ -128,13 +121,11 @@ function removeItem(index) {
     showBasket();
 }
 
-// On vide tout le panier
 function emptyBasket() {
     localStorage.removeItem("basket");
     showBasket();
 }
 
-// Buy now ou Installments : on cree la commande avec le total du panier
 function checkoutBasket(installments) {
     let basket = getBasket();
     let total = 0;
@@ -164,7 +155,6 @@ function checkoutBasket(installments) {
     }
 }
 
-// ===== Page Contact =====
 function sendMessage() {
     let name = document.getElementById("c-name").value;
     let email = document.getElementById("c-email").value;
@@ -179,7 +169,6 @@ function sendMessage() {
     document.getElementById("success").classList.remove("hidden");
 }
 
-// On lance la bonne fonction selon la page
 if (document.getElementById("checkout")) {
     showOrder();
 }
