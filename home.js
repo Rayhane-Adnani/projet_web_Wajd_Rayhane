@@ -27,7 +27,6 @@ function toggleMenu() {
     mainNav.classList.toggle("open");
 }
 
-// Bouton mode sombre / clair
 function changeTheme() {
     let themeBtn = document.getElementById("theme-toggle");
 
