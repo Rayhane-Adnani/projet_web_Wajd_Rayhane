@@ -259,10 +259,43 @@ main h1 {
     background-color: var(--bg); color: var(--text);
     border: 1px solid var(--bordure); border-radius: 8px;
 }
-.item { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--bordure); }
-.plan { width: 100%; border-collapse: collapse; margin-top: 10px; }
-.plan th, .plan td { padding: 8px; text-align: left; border-bottom: 1px solid var(--bordure); }
-.total { font-weight: bold; font-size: 1.1rem; }
-.link-btn { display: inline-block; padding: 10px 16px; background-color: var(--accent); color: white; border-radius: 8px; font-weight: bold; }
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--bordure);
+}  
+.plan {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.plan th, .plan td {
+    padding: 8px; 
+    text-align: left; 
+    border-bottom: 1px solid var(--bordure); 
+}
+.total { 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+}
+.link-btn { 
+    display: inline-block; 
+    padding: 10px 16px; 
+    background-color: var(--accent); 
+    color: white; 
+    border-radius: 8px; 
+    font-weight: bold; 
+}
 
-.remove-btn { margin-left: 8px; padding: 2px 8px; background: none; color: #dc2626; border: 1px solid #dc2626; border-radius: 6px; cursor: pointer; }
+.remove-btn { 
+    margin-left: 8px; 
+    padding: 2px 8px; 
+    background: none; 
+    color: #dc2626; 
+    border: 1px solid #dc2626; 
+    border-radius: 6px; 
+    cursor: pointer; 
+}
